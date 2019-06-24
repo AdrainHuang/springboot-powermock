@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: study
+  datasource:
+      url : jdbc:mysql://localhost:3306/study
+      username : root
+      password : root
+      driverClassName : com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: create
+      naming-strategy : org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect : org.hibernate.dialect.MySQL5Dialect
