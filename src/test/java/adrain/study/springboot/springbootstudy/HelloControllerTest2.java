@@ -3,6 +3,7 @@ package adrain.study.springboot.springbootstudy;
 import adrain.study.springboot.springbootstudy.controller.HelloController;
 import adrain.study.springboot.springbootstudy.domain.Person;
 import adrain.study.springboot.springbootstudy.repository.IPersnDao;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -62,12 +63,13 @@ public class HelloControllerTest2 {
 		
 		PowerMockito.whenNew(Person.class).withAnyArguments().thenReturn(person);;
 		PowerMockito.when(person.getAge()).thenReturn(20);
-		System.out.println("====================>"+this.mockMvc.perform(
+		Assert.assertEquals("20",this.mockMvc.perform(
 		post("/person")
 		.param("name", "Tom")
 		.param("age", "12")
 		).andExpect(status().isOk())
 		.andReturn().getResponse().getContentAsString());
 		verify(iPersnDao).save(any(Person.class));
+		
 	}
 }
